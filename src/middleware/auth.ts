@@ -21,7 +21,7 @@ const auth = (...roles: UserRole[]) => {
       const decoded = jwt.verify(
         token as string,
         config.secret as string
-      ) as JwtPayload;
+      ) as JwtPayload & { id: number; name: string; role: string };
 
       const userData = await pool.query(
         `SELECT * FROM users WHERE id = $1`,
@@ -45,7 +45,7 @@ const auth = (...roles: UserRole[]) => {
         });
         return;
       }
-
+      req.user = decoded;
       next();
     } catch (error) {
       next(error);

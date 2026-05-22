@@ -242,6 +242,7 @@ var auth = (...roles) => {
         });
         return;
       }
+      req.user = decoded;
       next();
     } catch (error) {
       next(error);

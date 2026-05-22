@@ -71,7 +71,6 @@ const loginUserIntoDB = async (payload: {
     expiresIn: "7d",
   });
 
-
   const { password: _pass, ...userWithoutPassword } = user;
 
   return {
