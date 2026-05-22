@@ -22,14 +22,13 @@ app.get("/", (req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     message: "DevPulse API Server",
-    author: "DevPulse",
+    author: "Zisan Ul Haque",
   });
 });
 
 app.use("/api/auth", authRoute);
 app.use("/api/issues", issueRoute);
 
-// Global Error Handling Middleware
 app.use(globalErrorHandler);
 
 export default app;

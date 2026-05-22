@@ -21,13 +21,10 @@ const registerUserIntoDB = async (payload: {
     throw new Error("An account with this email already exists.");
   }
 
-  // 2. Hash the password
   const hashedPassword = await bcrypt.hash(password, 10);
 
-  // 3. Determine role — default to contributor
   const userRole = role === "maintainer" ? "maintainer" : "contributor";
 
-  // 4. Insert new user
   const result = await pool.query(
     `
     INSERT INTO users (name, email, password, role)
@@ -46,7 +43,7 @@ const loginUserIntoDB = async (payload: {
 }) => {
   const { email, password } = payload;
 
-  // 1. Check if user exists
+
   const userData = await pool.query(
     `SELECT * FROM users WHERE email = $1`,
     [email]
@@ -58,14 +55,12 @@ const loginUserIntoDB = async (payload: {
 
   const user = userData.rows[0];
 
-  // 2. Compare password
   const isPasswordMatch = await bcrypt.compare(password, user.password);
 
   if (!isPasswordMatch) {
     throw new Error("Invalid email or password.");
   }
 
-  // 3. Generate JWT token
   const jwtPayload = {
     id: user.id,
     name: user.name,
@@ -76,7 +71,7 @@ const loginUserIntoDB = async (payload: {
     expiresIn: "7d",
   });
 
-  // 4. Return token + user (no password)
+
   const { password: _pass, ...userWithoutPassword } = user;
 
   return {
