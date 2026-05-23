@@ -316,7 +316,7 @@ Response (200):
 ---
 
 ## Project Structure
-
+```text
 src/
 ├── config/
 │   └── index.ts            → Environment variables
