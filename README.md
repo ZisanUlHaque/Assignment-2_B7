@@ -136,7 +136,7 @@ npm start
 ## Request & Response Examples
 
 ### POST /api/auth/signup
-
+```text
 Request:
 {
   "name": "John Doe",
@@ -189,7 +189,7 @@ Response (200):
 ---
 
 ### POST /api/issues
-
+```text
 Headers:
 Authorization: your_jwt_token
 
@@ -219,7 +219,7 @@ Response (201):
 ---
 
 ### GET /api/issues
-
+```text
 Query Parameters:
 - sort   → newest (default) | oldest
 - type   → bug | feature_request
@@ -252,7 +252,7 @@ Response (200):
 ---
 
 ### PATCH /api/issues/:id
-
+```text
 Headers:
 Authorization: your_jwt_token
 
@@ -281,7 +281,7 @@ Response (200):
 ---
 
 ### DELETE /api/issues/:id
-
+```text
 Headers:
 Authorization: maintainer_jwt_token
 
@@ -294,7 +294,7 @@ Response (200):
 ---
 
 ## Error Response Format
-
+```text
 {
   "success": false,
   "message": "Error description here",
